@@ -1,0 +1,131 @@
+body {
+    background: linear-gradient(270deg, #d2691e, #b05216, #d2691e); /* Gradient background */
+    background-size: 400% 400%; /* Size for smooth animation */
+    animation: gradientAnimation 10s ease infinite; /* Infinite animation */
+    font-family: "Helvetica Neue", sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.login {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    border-radius: 10px;
+    padding: 30px;
+    width: 30%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px); /* Blur effect for modern touch */
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideIn 0.5s forwards; /* Slide-in effect for login form */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+h1 {
+    margin-bottom: 20px;
+    animation: bounceIn 0.5s forwards; /* Bounce-in effect for title */
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", sans-serif;
+    color: #444;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5), 0 0 15px rgba(0, 123, 255, 0.2); /* Enhanced shadow effect */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.text-center {
+    text-align: center;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Added transition for links */
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #007bff; /* Change link color on hover */
+}
+
+.success {
+    color: #F9E79F; 
+}
+
+.error {
+    color: #FF6B6B;
+}
+
+@media (max-width: 768px) {
+    .login {
+        width: 80%; /* Adjust width for smaller screens */
+    }
+}

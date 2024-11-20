@@ -1,0 +1,195 @@
+/* Section wrapper styling */
+.slider-section {
+    padding: 40px 0;
+    background-color: #efefef; /* Chocolate color for the background */
+}
+
+/* Container styling */
+.slide-container {
+    position: relative;
+    max-width: 1120px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+/* Card wrapper spacing */
+.card-wrapper {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Card styling with transparency */
+.card {
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.8); /* White with slight transparency */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.9); /* Increase opacity slightly on hover */
+}
+
+/* Styling for cards content */
+.image-content, .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+}
+
+.image-content {
+    position: relative;
+    padding: 25px 0;
+}
+
+/* Overlay styling for card images */
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #8B4513; /* Dark chocolate color */
+    opacity: 0.8;
+    border-radius: 25px 25px 0 25px;
+}
+
+/* Card image styling */
+.card-image {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 3px;
+}
+
+.card-image .card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #8B4513; /* Match the overlay color */
+}
+
+/* Name and description styling */
+.name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+}
+
+.description {
+    font-size: 14px;
+    color: #5a5a5a;
+    text-align: center;
+}
+
+/* Button styling */
+.button {
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 8px 16px;
+    background-color: #8B4513;
+    border-radius: 6px;
+    margin: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #A0522D; /* Lighter chocolate shade */
+}
+
+/* Swiper button styling */
+.swiper-navBtn {
+    color: #A0522D;
+    transition: color 0.3s ease;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.swiper-navBtn:hover {
+    color: #8B4513;
+}
+
+.swiper-button-next {
+    right: -1px; /* Space from the card */
+}
+
+.swiper-button-prev {
+    left: -1px; /* Space from the card */
+}
+
+/* Pagination styling */
+.swiper-pagination-bullet {
+    background-color: #A0522D;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #8B4513;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .slide-content {
+        margin: 0 10px;
+    }
+    .swiper-navBtn {
+        display: none;
+    }
+}
+
+/*about us*/
+/* Section wrapper styling */
+.about-us-section {
+    padding: 40px 20px;
+    background-color: #D2691E; /* Chocolate color background */
+    color: #fff;
+    text-align: center;
+}
+
+/* Centered title styling */
+.about-us-section h2 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Transparent content box */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: #333; /* Darker text color for readability */
+}
+
+/* Paragraph styling within the content */
+.about-content p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #4a4a4a; /* Softer gray text for readability */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .about-content {
+        padding: 15px 20px;
+    }
+    .about-us-section h2 {
+        font-size: 1.8em;
+    }
+    .about-content p {
+        font-size: 0.95em;
+    }
+}

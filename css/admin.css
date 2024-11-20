@@ -1,0 +1,253 @@
+/*
+Author: Ismaël KAGOU
+Theme: Food Order Website Admin
+*/
+
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Wrapper */
+.wrapper {
+    padding: 1%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Text alignment */
+.text-center {
+    text-align: center;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.tbl-full {
+    width: 100%;
+}
+.tbl-30{
+    width: 30%;
+    margin: 0 auto; /* Center the table */
+}
+
+table {
+    border-collapse: collapse; /* For cleaner table borders */
+    background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+input[type="number"], textarea {
+    width: 100%; /* Full width for form fields */
+    padding: 12px 10px; /* Adjust padding for better user experience */
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Light border */
+    border-radius: 5px; /* Rounded corners for form fields */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.2s ease-in-out; /* Smooth transition on hover */
+}
+input[type="number"]:focus, textarea:focus {
+    border-color: rgba(212, 175, 55, 0.5); /* Highlight border on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 3px 1px rgba(212, 175, 55, 0.2); /* Enhance focus effect */
+}
+
+table tr th {
+    border-bottom: 1px solid #ddd;
+    padding: 1%;
+    text-align: left;
+    font-weight: bold;
+}
+
+table tr td {
+    padding: 10px 15px; /* Padding inside cells */
+}
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+
+    &:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px #007bff;
+    }
+
+    font-family: "Helvetica Neue", sans-serif;
+    color: #444;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    input[type="text"],
+    input[type="password"] {
+        width: 100%; /* Adjust width for smaller screens */
+    }
+}
+
+
+.btn-primary {
+    background-color: #1e90ff;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px; /* Rounded corners */
+    border: none; /* Remove default button border */
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #3742fa;
+}
+
+.btn-secondary {
+    background-color: #7bed9f;
+    padding: 1%;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: #2ed573;
+}
+
+.btn-danger {
+    background-color: #ff6b81;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background-color: #ff4757;
+}
+
+.success{
+   color: #F9E79F; 
+}
+
+.error{
+    color: #FF6B6B;
+}
+
+/* Menu */
+.menu {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+}
+
+.menu ul {
+    list-style-type: none;
+}
+
+.menu ul li {
+    display: inline-block;
+    padding: 1%;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffdb01;
+}
+
+.menu ul li a:hover {
+    color: #ff4757;
+}
+
+/* Main content */
+.main-content {
+    background-image: url("../images/32d106aa870b53443515a4e664f3e17a.jpg");
+    background-size: 30%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity:1; /* Adjust opacity as needed */
+    background-color: chocolate;
+}
+
+.col-4 {
+    width: 18%;
+    background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+    margin: 1%;
+    padding: 2%;
+    float: left;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+
+/* Footer */
+.footer {
+    background-color: #2c3e50; /* Darker background for modern feel */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.wrapper {
+    max-width: 1200px; /* Centering and limiting the width */
+    margin: 0 auto;
+    padding: 10px 15px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.footer a {
+    color: #ff4757; /* Bright accent color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #f39c12; /* Change color on hover */
+}
+
+@media only screen and (max-width: 768px) {
+    .wrapper {
+        width: 95%;
+    }
+
+    .menu ul li {
+        display: block;
+        padding: 5px;
+    }
+
+    .col-4 {
+        width: 100%;
+        float: none;
+        margin-bottom: 1rem;
+    }
+
+    .tbl-30 {
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+    }
+
+    .btn-primary, .btn-secondary, .btn-danger {
+        padding: 8px 12px;
+        width: 100%;
+    }
+}
