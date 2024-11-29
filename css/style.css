@@ -568,138 +568,86 @@ fieldset{
     font-weight: bold;
 }
 
-
-/* CSS for Mobile Size or Smaller Screen */
-
+/* General Mobile Adjustments */
 @media only screen and (max-width: 768px) {
-  .logo {
-    width: 80%;
-    float: none;
-    margin: 1% auto;
+  .container {
+    width: 100%;
+    padding: 2%;
   }
 
   .menu ul {
-    text-align: center;
-    display: flex; /* Use flexbox for better layout control */
-    flex-wrap: wrap; /* Wrap items to a new line if they don't fit */
-    justify-content: center; /* Center the items horizontally */
+    flex-direction: column;
+    gap: 10px;
   }
 
   .menu ul li {
-    margin: 5px; /* Add spacing between items */
+    display: block;
+    text-align: center;
+  }
+
+  .food-search .container {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .card {
+    margin: 10px auto;
+    width: 90%;
+  }
+
+  .categories .box-3 {
+    width: 100%;
+    height: auto;
+  }
+
+  .order, .food-search-order .container {
+    width: 90%;
+  }
+
+  .social ul {
+    flex-direction: column;
+  }
+
+  .social ul li {
+    margin: 5px 0;
+  }
+}
+
+/* Ultra Small Screens */
+@media only screen and (max-width: 480px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .menu ul li a {
+    padding: 5px 10px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
   }
 
   .food-search input[type="search"] {
     width: 90%;
-    padding: 2%;
-    margin-bottom: 3%;
   }
 
-  .btn {
-    width: 91%;
-    padding: 2%;
+  .categories .box-3 {
+    padding: 10px;
   }
 
-  .food-search {
-    padding: 10% 0;
-  }
-
-  .categories {
-    padding: 20% 0;
-  }
-
-  h2 {
-    margin-bottom: 10%;
-  }
-
-  .box-3 {
+  .card img {
     width: 100%;
-    margin: 4% auto;
-  }
-
-  .food-menu {
-    padding: 20% 0;
-  }
-
-  .food-menu-box {
-    width: 90%;
-    padding: 5%;
-    margin-bottom: 5%;
-  }
-
-  .social {
-    padding: 5% 0;
-    display: flex; /* Use flexbox for better layout control */
-    justify-content: center; /* Center the social icons horizontally */
-    align-items: center; /* Center the social icons vertically */
-  }
-
-  .social ul li {
-    margin: 5px; /* Add spacing between items */
-  }
-
-  .order {
-    width: 100%;
-  }
-}
-/* Responsive styles for medium screens (below 768px) */
-@media (max-width: 768px) {
-  .food-search-order {
-    padding: 5px; /* Reduce padding */
-  }
-
-  .food-search-order .container {
-    max-width: 70%; /* Make container wider */
-    padding: 20px; /* Reduce padding */
-  }
-
-  .food-search-order .container h2 {
-    font-size: 1.5rem; /* Adjust heading font size */
-  }
-
-  .food-search-order .container input[type="text"],
-  .food-search-order .container input[type="number"],
-  .food-search-order .container input[type="email"],
-  .food-search-order .container textarea {
-    padding: 10px; /* Reduce padding for form fields */
-  }
-
-  .food-search-order .container .btn-primary {
-    padding: 0.8rem 1.5rem; /* Adjust button padding */
+    height: auto;
   }
 }
 
-/* Responsive styles for small screens (below 480px) */
-@media (max-width: 480px) {
-  .food-search-order {
-    padding: 5px; /* Further reduce padding */
-  }
-
-  .food-search-order .container {
-    max-width: 90%; /* Make container fill more width */
-    padding: 5px; /* Reduce padding */
-    gap: 8px; /* Reduce spacing between elements */
-  }
-
-  .food-search-order .container h2 {
-    font-size: 1.2rem; /* Smaller font size for headings */
-  }
-
-  .food-search-order .container .food-menu-img img {
-    width: 60px;
-    height: 60px; /* Smaller image size */
-  }
-
-  .food-search-order .container input[type="text"],
-  .food-search-order .container input[type="number"],
-  .food-search-order .container input[type="email"],
-  .food-search-order .container textarea {
-    padding: 8px; /* Smaller padding */
-    font-size: 0.9rem; /* Smaller font size */
-  }
-
-  .food-search-order .container .btn-primary {
-    padding: 0.7rem 1.2rem; /* Further adjust button padding */
-    font-size: 0.9rem; /* Smaller button font */
-  }
+/* Modal Specific Adjustments */
+.modal-content {
+  width: 90%;
+  max-width: 300px;
 }
