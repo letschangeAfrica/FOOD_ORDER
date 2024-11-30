@@ -1,7 +1,8 @@
 /* Section wrapper styling */
 .slider-section {
-    padding: 40px 0;
+    padding: 60px 0;
     background-color: #efefef; /* Chocolate color for the background */
+    border-bottom: 4px solid #8B4513; /* Subtle border for visual interest */
 }
 
 /* Container styling */
@@ -10,26 +11,27 @@
     max-width: 1120px;
     width: 100%;
     margin: 0 auto;
-    padding: 50px;
+    padding: 60px;
+    text-align: center; /* Center text inside the container */
 }
 
 /* Card wrapper spacing */
 .card-wrapper {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 /* Card styling with transparency */
 .card {
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.8); /* White with slight transparency */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.85); /* Slightly higher opacity */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .card:hover {
     transform: scale(1.05);
-    background-color: rgba(255, 255, 255, 0.9); /* Increase opacity slightly on hover */
+    background-color: rgba(255, 255, 255, 1); /* Full opacity on hover */
 }
 
 /* Styling for cards content */
@@ -37,12 +39,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 14px;
+    padding: 20px;
 }
 
 .image-content {
     position: relative;
-    padding: 25px 0;
+    padding: 35px 0;
 }
 
 /* Overlay styling for card images */
@@ -53,18 +55,19 @@
     height: 100%;
     width: 100%;
     background-color: #8B4513; /* Dark chocolate color */
-    opacity: 0.8;
-    border-radius: 25px 25px 0 25px;
+    opacity: 0.85;
+    border-radius: 15px 15px 0 15px; /* Soften the corners of the overlay */
 }
 
 /* Card image styling */
 .card-image {
     position: relative;
-    height: 150px;
-    width: 150px;
+    height: 180px;
+    width: 180px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 3px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .card-image .card-img {
@@ -72,34 +75,36 @@
     width: 100%;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid #8B4513; /* Match the overlay color */
+    border: 5px solid #8B4513; /* Match the overlay color */
 }
 
 /* Name and description styling */
 .name {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 700;
     color: #333;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .description {
-    font-size: 14px;
-    color: #5a5a5a;
+    font-size: 16px;
+    color: #6a6a6a;
     text-align: center;
+    margin-top: 10px;
 }
 
 /* Button styling */
 .button {
     border: none;
-    font-size: 16px;
+    font-size: 18px;
     color: #fff;
-    padding: 8px 16px;
+    padding: 10px 20px;
     background-color: #8B4513;
-    border-radius: 6px;
-    margin: 14px;
+    border-radius: 8px;
+    margin-top: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-transform: uppercase;
 }
 
 .button:hover {
@@ -110,7 +115,7 @@
 .swiper-navBtn {
     color: #A0522D;
     transition: color 0.3s ease;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
 }
 
@@ -118,12 +123,9 @@
     color: #8B4513;
 }
 
-.swiper-button-next {
-    right: -1px; /* Space from the card */
-}
-
-.swiper-button-prev {
-    left: -1px; /* Space from the card */
+.swiper-button-next, .swiper-button-prev {
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* Pagination styling */
@@ -137,59 +139,72 @@
 }
 
 /* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+    .slide-container {
+        padding: 40px;
+    }
+    .swiper-navBtn {
+        font-size: 22px;
+    }
+}
+
 @media screen and (max-width: 768px) {
-    .slide-content {
-        margin: 0 10px;
+    .card-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
     }
     .swiper-navBtn {
         display: none;
     }
 }
 
-/*about us*/
-/* Section wrapper styling */
+/* About Us section */
 .about-us-section {
-    padding: 40px 20px;
+    padding: 60px 20px;
     background-color: #D2691E; /* Chocolate color background */
     color: #fff;
     text-align: center;
+    border-top: 4px solid #8B4513; /* Border at the top for separation */
 }
 
 /* Centered title styling */
 .about-us-section h2 {
-    font-size: 2em;
+    font-size: 2.5em;
     color: #fff;
     margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 /* Transparent content box */
 .about-content {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+    padding: 25px 40px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     color: #333; /* Darker text color for readability */
 }
 
-/* Paragraph styling within the content */
 .about-content p {
-    font-size: 1em;
-    line-height: 1.6;
+    font-size: 1.1em;
+    line-height: 1.8;
     margin-bottom: 20px;
-    color: #4a4a4a; /* Softer gray text for readability */
+    color: #5a5a5a; /* Softer gray text for readability */
 }
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .about-content {
-        padding: 15px 20px;
+        padding: 20px 30px;
     }
     .about-us-section h2 {
-        font-size: 1.8em;
+        font-size: 2em;
     }
     .about-content p {
-        font-size: 0.95em;
+        font-size: 1em;
     }
 }
