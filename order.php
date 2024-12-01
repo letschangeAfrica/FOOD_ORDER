@@ -125,6 +125,7 @@
             header('Location: ' . SITEURL);
         }
     }
+    require_once('fpdf.php');
 
     // Function to generate the order PDF using FPDF
     function generateOrderPDF($food, $price, $qty, $total, $order_date, $customer_name, $customer_contact, $customer_email, $customer_address) {
