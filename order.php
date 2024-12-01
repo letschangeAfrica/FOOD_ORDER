@@ -81,7 +81,6 @@
             </fieldset>
         </form>
 
-
         <?php
             if(isset($_POST['submit'])){
                 // Get all details
@@ -112,64 +111,14 @@
                 ";
 
                 $res2 = mysqli_query($conn, $sql2);
-                if ($res2 == true) {
+                if($res2 == true){
                     // Query executed and order saved
-                    $order_id = mysqli_insert_id($conn); // Get the last inserted ID
-
-                    // Output success message and trigger JavaScript for PDF
-                    echo "
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            const { jsPDF } = window.jspdf;
-                            const pdf = new jsPDF();
-
-                            // Order details
-                            const food = '$food';
-                            const price = $price;
-                            const qty = $qty;
-                            const total = $total;
-                            const customerName = '$customer_name';
-                            const customerContact = '$customer_contact';
-                            const customerEmail = '$customer_email';
-                            const customerAddress = '$customer_address';
-
-                            // Generate PDF
-                            pdf.setFont('helvetica', 'bold');
-                            pdf.setFontSize(20);
-                            pdf.text('Order Receipt', 105, 20, { align: 'center' });
-
-                            pdf.setFont('helvetica', 'normal');
-                            pdf.setFontSize(12);
-                            pdf.text('Customer Name: ' + customerName, 10, 40);
-                            pdf.text('Contact: ' + customerContact, 10, 50);
-                            pdf.text('Email: ' + customerEmail, 10, 60);
-                            pdf.text('Address: ' + customerAddress, 10, 70);
-
-                            pdf.text('Food: ' + food, 10, 90);
-                            pdf.text('Price: ' + price + ' XAF', 10, 100);
-                            pdf.text('Quantity: ' + qty, 10, 110);
-                            pdf.text('Total: ' + total + ' XAF', 10, 120);
-
-                            pdf.setFont('helvetica', 'bold');
-                            pdf.text('Thank you for your order!', 10, 140);
-
-                            // Save the PDF
-                            const fileName = 'Order_Receipt_' + Date.now() + '.pdf';
-                            pdf.save(fileName);
-
-                            // Redirect to success page
-                            setTimeout(() => {
-                                window.location.href = '".SITEURL."index.php?success=true&order_id=".$order_id."';
-                            }, 1000); // Allow time for the PDF to download
-                        });
-                    </script>
-                    ";
+                    $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
+                    header('location:' .SITEURL);
                 } else {
-                    // Query failed, display error message and redirect
                     $_SESSION['order'] = "<div class='error text-center'>Failed to order Food.</div>";
-                    header('Location:' . SITEURL);
+                    header('location:' .SITEURL);
                 }
-
             }
         ?>
     </div>
@@ -222,33 +171,33 @@
 
 <script>
     function confirmOrder() {
-    const confirmButton = document.getElementById("confirmOrderButton");
-    const form = document.getElementById("orderForm");
-    const isClicked = confirmButton.getAttribute("data-clicked") === "true";
+        const confirmButton = document.getElementById("confirmOrderButton");
+        const form = document.getElementById("orderForm");
+        const isClicked = confirmButton.getAttribute("data-clicked") === "true";
 
-    if (!isClicked) {
-        // First click: Display the payment information modal if the form is valid
-        if (form.checkValidity()) {
-            openPaymentModal();
-            confirmButton.setAttribute("data-clicked", "true"); // Mark as clicked
+        if (!isClicked) {
+            // First click: Display the payment information modal if the form is valid
+            if (form.checkValidity()) {
+                openPaymentModal();
+                confirmButton.setAttribute("data-clicked", "true"); // Mark as clicked
+            } else {
+                // Show validation messages if fields are missing
+                form.reportValidity();
+            }
         } else {
-            // Show validation messages if fields are missing
-            form.reportValidity();
+            // Second click: Submit the form
+            confirmButton.setAttribute("type", "submit");
+            confirmButton.name = "submit"; // Set name to submit for PHP handling
+            form.submit(); // Submit the form
         }
-    } else {
-        // Second click: Submit the form
-        confirmButton.setAttribute("type", "submit");
-        confirmButton.name = "submit"; // Set name to submit for PHP handling
-        form.submit(); // Submit the form
     }
-}
 
-function openPaymentModal() {
-    document.getElementById("paymentModal").style.display = "block";
-}
+    function openPaymentModal() {
+        document.getElementById("paymentModal").style.display = "block";
+    }
 
-function closePaymentModal() {
-    document.getElementById("paymentModal").style.display = "none"; // Hide the modal
-}
+    function closePaymentModal() {
+        document.getElementById("paymentModal").style.display = "none"; // Hide the modal
+    }
 
 </script>
