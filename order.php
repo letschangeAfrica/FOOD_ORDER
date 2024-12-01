@@ -111,14 +111,18 @@
                 ";
 
                 $res2 = mysqli_query($conn, $sql2);
-                if($res2 == true){
+                if ($res2 == true) {
                     // Query executed and order saved
+                    $order_id = mysqli_insert_id($conn); // Get the last inserted ID
                     $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
-                    header('location:' .SITEURL);
+
+                    // Redirect with order details passed via URL
+                    header('Location:' . SITEURL . 'index.php?success=true&order_id=' . $order_id);
                 } else {
                     $_SESSION['order'] = "<div class='error text-center'>Failed to order Food.</div>";
-                    header('location:' .SITEURL);
+                    header('Location:' . SITEURL);
                 }
+
             }
         ?>
     </div>
@@ -199,4 +203,77 @@
     function closePaymentModal() {
         document.getElementById("paymentModal").style.display = "none"; // Hide the modal
     }
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+  window.onload = function () {
+    // Check if the order was successfully placed
+    const urlParams = new URLSearchParams(window.location.search);
+    const success = urlParams.get('success');
+    const orderId = urlParams.get('order_id');
+
+    if (success === "true" && orderId) {
+      generatePDFReceipt(orderId);
+    }
+  };
+
+  async function generatePDFReceipt(orderId) {
+    // Mock order details fetched from your server/database
+    const orderDetails = {
+      orderId: orderId,
+      food: "<?php echo $title; ?>",
+      quantity: "<?php echo $_POST['qty'] ?? 1; ?>",
+      price: "<?php echo $price; ?>",
+      total: "<?php echo $price * ($_POST['qty'] ?? 1); ?>",
+      customerName: "<?php echo $_POST['full-name'] ?? ''; ?>",
+      phone: "<?php echo $_POST['contact'] ?? ''; ?>",
+      address: "<?php echo $_POST['address'] ?? ''; ?>",
+      orderDate: "<?php echo date('Y-m-d H:i:sa'); ?>"
+    };
+
+    // Import jsPDF (UMD module)
+    const { jsPDF } = window.jspdf;
+
+    // Create a new jsPDF instance
+    const doc = new jsPDF();
+
+    // Add content to the PDF
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(20);
+    doc.setTextColor(0, 102, 204); // Blue text
+    doc.text("Restaurant Receipt", 105, 20, { align: "center" });
+
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0, 0, 0); // Black text
+
+    // Receipt Information
+    doc.text(`Order ID: ${orderDetails.orderId}`, 20, 40);
+    doc.text(`Order Date: ${orderDetails.orderDate}`, 20, 50);
+    doc.text(`Customer Name: ${orderDetails.customerName}`, 20, 60);
+    doc.text(`Phone: ${orderDetails.phone}`, 20, 70);
+    doc.text(`Address: ${orderDetails.address}`, 20, 80);
+
+    // Order Details
+    doc.text("Order Summary:", 20, 100);
+    doc.text(`Food Item: ${orderDetails.food}`, 20, 110);
+    doc.text(`Quantity: ${orderDetails.quantity}`, 20, 120);
+    doc.text(`Price: ${orderDetails.price} XAF`, 20, 130);
+    doc.text(`Total: ${orderDetails.total} XAF`, 20, 140);
+
+    // Footer
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(10);
+    doc.setTextColor(0, 102, 204);
+    doc.text("Thank you for your order!", 105, 180, { align: "center" });
+
+    // Save the PDF
+    doc.save(`receipt_${orderDetails.orderId}.pdf`);
+
+    // Redirect to the home page
+    setTimeout(() => {
+      window.location.href = "<?php echo SITEURL; ?>";
+    }, 3000); // Redirect after 3 seconds
+  }
 </script>
