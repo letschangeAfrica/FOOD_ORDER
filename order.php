@@ -28,6 +28,7 @@
 ?>
 <!-- Food Search Section Starts Here -->
 <section class="food-search-order">
+<script src="jsPDF-master/dist/jspdf.umd.min.js"></script>
     <div class="container">
 
         <h2 class="text-center text-white">Fill this form to confirm your order.</h2>

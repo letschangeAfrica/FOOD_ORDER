@@ -9,7 +9,6 @@
 
     <!-- Link our CSS file -->
     <link rel="stylesheet" href="css/style.css">
-    <script src="jsPDF-master/dist/jspdf.umd.min.js"></script>
 </head>
 
 <body>
