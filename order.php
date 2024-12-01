@@ -83,7 +83,7 @@
 
         <?php
         // Include FPDF library
-            require('path/to/fpdf.php');  // Adjust the path to where your fpdf.php file is located
+            require('fpdf.php');  // Adjust the path to where your fpdf.php file is located
 
             // Order form handling part
     if (isset($_POST['submit'])) {
