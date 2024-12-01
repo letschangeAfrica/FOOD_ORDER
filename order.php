@@ -82,44 +82,83 @@
         </form>
 
         <?php
-            if(isset($_POST['submit'])){
-                // Get all details
-                $food = $_POST['food'];
-                $price = $_POST['price'];
-                $qty = $_POST['qty'];
-                $total = $price * $qty;
-                $order_date = date("Y-m-d H:i:sa"); // Order Date
+        // Include FPDF library
+            require('path/to/fpdf.php');  // Adjust the path to where your fpdf.php file is located
 
-                $status = "Ordered"; // Ordered, On delivery, Delivered, Cancelled
-                $customer_name = $_POST['full-name'];
-                $customer_contact = $_POST['contact'];
-                $customer_email = $_POST['email'];
-                $customer_address = $_POST['address'];
+            // Order form handling part
+    if (isset($_POST['submit'])) {
+        // Get all order details
+        $food = $_POST['food'];
+        $price = $_POST['price'];
+        $qty = $_POST['qty'];
+        $total = $price * $qty;
+        $order_date = date("Y-m-d H:i:sa"); // Order Date
+        $status = "Ordered"; // Ordered, On delivery, Delivered, Cancelled
+        $customer_name = $_POST['full-name'];
+        $customer_contact = $_POST['contact'];
+        $customer_email = $_POST['email'];
+        $customer_address = $_POST['address'];
 
-                // Save the order in database
-                $sql2 = "INSERT INTO tbl_order SET
-                    food = '$food',
-                    price = $price,
-                    qty = $qty,
-                    total = $total,
-                    order_date = '$order_date',
-                    status = '$status',
-                    customer_name = '$customer_name',
-                    customer_contact = '$customer_contact',
-                    customer_email = '$customer_email',
-                    customer_address = '$customer_address'
-                ";
+        // Save the order in the database
+        $sql2 = "INSERT INTO tbl_order SET
+            food = '$food',
+            price = $price,
+            qty = $qty,
+            total = $total,
+            order_date = '$order_date',
+            status = '$status',
+            customer_name = '$customer_name',
+            customer_contact = '$customer_contact',
+            customer_email = '$customer_email',
+            customer_address = '$customer_address'
+        ";
 
-                $res2 = mysqli_query($conn, $sql2);
-                if($res2 == true){
-                    // Query executed and order saved
-                    $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
-                    header('location:' .SITEURL);
-                } else {
-                    $_SESSION['order'] = "<div class='error text-center'>Failed to order Food.</div>";
-                    header('location:' .SITEURL);
-                }
-            }
+        $res2 = mysqli_query($conn, $sql2);
+        if ($res2 == true) {
+            // Order saved successfully
+            $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
+
+            // Generate PDF
+            generateOrderPDF($food, $price, $qty, $total, $order_date, $customer_name, $customer_contact, $customer_email, $customer_address);
+
+            // Redirect after PDF generation
+            header('Location: ' . SITEURL . 'index.php'); // Redirect to the success page
+        } else {
+            $_SESSION['order'] = "<div class='error text-center'>Failed to order Food.</div>";
+            header('Location: ' . SITEURL);
+        }
+    }
+
+    // Function to generate the order PDF using FPDF
+    function generateOrderPDF($food, $price, $qty, $total, $order_date, $customer_name, $customer_contact, $customer_email, $customer_address) {
+        // Create new FPDF object
+        $pdf = new FPDF();
+        $pdf->AddPage();  // Add a page to the PDF
+
+        // Set title
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Cell(200, 10, 'Order Confirmation', 0, 1, 'C');  // Title in center
+
+        // Order details section
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Ln(10); // Line break
+
+        $pdf->Cell(0, 10, 'Order Date: ' . $order_date, 0, 1);
+        $pdf->Cell(0, 10, 'Customer Name: ' . $customer_name, 0, 1);
+        $pdf->Cell(0, 10, 'Phone: ' . $customer_contact, 0, 1);
+        $pdf->Cell(0, 10, 'Email: ' . $customer_email, 0, 1);
+        $pdf->Cell(0, 10, 'Address: ' . $customer_address, 0, 1);
+
+        // Food details section
+        $pdf->Ln(10); // Line break
+        $pdf->Cell(0, 10, 'Food Ordered: ' . $food, 0, 1);
+        $pdf->Cell(0, 10, 'Price per unit: ' . $price . ' XAF', 0, 1);
+        $pdf->Cell(0, 10, 'Quantity: ' . $qty, 0, 1);
+        $pdf->Cell(0, 10, 'Total: ' . $total . ' XAF', 0, 1);
+
+        // Output the PDF to browser
+        $pdf->Output('order_confirmation.pdf', 'I'); // 'I' for inline (will display in browser)
+    }
         ?>
     </div>
 </section>
