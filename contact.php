@@ -80,8 +80,8 @@
                         </div>
                     </div>
                     <div class="card-content">
-                        <h2 class="name">Ismaël KAGOU</h2>
-                        <p class="description"> Sophomore II, Future Data Professional Leader</p>
+                        <h2 class="name">Edou MEUVOK</h2>
+                        <p class="description"> Junior II, IT Student</p>
 
                         <button class="button"> View More</button>
                     </div>

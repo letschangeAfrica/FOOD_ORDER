@@ -115,8 +115,17 @@
             // Order saved successfully
             $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
 
-            // Generate PDF
-            generateOrderPDF($food, $price, $qty, $total, $order_date, $customer_name, $customer_contact, $customer_email, $customer_address);
+            $_SESSION['generate_pdf'] = [
+                'food' => $food,
+                'price' => $price,
+                'qty' => $qty,
+                'total' => $total,
+                'order_date' => $order_date,
+                'customer_name' => $customer_name,
+                'customer_contact' => $customer_contact,
+                'customer_email' => $customer_email,
+                'customer_address' => $customer_address
+            ];
 
             // Redirect after PDF generation
             header('Location: ' . SITEURL . 'index.php'); // Redirect to the success page
@@ -125,38 +134,7 @@
             header('Location: ' . SITEURL);
         }
     }
-    require_once('fpdf.php');
 
-    // Function to generate the order PDF using FPDF
-    function generateOrderPDF($food, $price, $qty, $total, $order_date, $customer_name, $customer_contact, $customer_email, $customer_address) {
-        // Create new FPDF object
-        $pdf = new FPDF();
-        $pdf->AddPage();  // Add a page to the PDF
-
-        // Set title
-        $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Cell(200, 10, 'Order Confirmation', 0, 1, 'C');  // Title in center
-
-        // Order details section
-        $pdf->SetFont('Arial', '', 12);
-        $pdf->Ln(10); // Line break
-
-        $pdf->Cell(0, 10, 'Order Date: ' . $order_date, 0, 1);
-        $pdf->Cell(0, 10, 'Customer Name: ' . $customer_name, 0, 1);
-        $pdf->Cell(0, 10, 'Phone: ' . $customer_contact, 0, 1);
-        $pdf->Cell(0, 10, 'Email: ' . $customer_email, 0, 1);
-        $pdf->Cell(0, 10, 'Address: ' . $customer_address, 0, 1);
-
-        // Food details section
-        $pdf->Ln(10); // Line break
-        $pdf->Cell(0, 10, 'Food Ordered: ' . $food, 0, 1);
-        $pdf->Cell(0, 10, 'Price per unit: ' . $price . ' XAF', 0, 1);
-        $pdf->Cell(0, 10, 'Quantity: ' . $qty, 0, 1);
-        $pdf->Cell(0, 10, 'Total: ' . $total . ' XAF', 0, 1);
-
-        // Output the PDF to browser
-        $pdf->Output('order_confirmation.pdf', 'I'); // 'I' for inline (will display in browser)
-    }
         ?>
     </div>
 </section>
