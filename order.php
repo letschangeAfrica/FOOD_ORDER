@@ -80,7 +80,17 @@
                 <button type="button" id="confirmOrderButton" onclick="confirmOrder()" class="btn btn-primary" data-clicked="false">Confirm Order</button>
             </fieldset>
         </form>
-        <script src="jsPDF-master/dist/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script>
+  const { jsPDF } = window.jspdf; // Get jsPDF object
+  if (jsPDF) {
+    const doc = new jsPDF();
+    doc.text("Hello, jsPDF!", 10, 10);
+    doc.save("test.pdf");
+  } else {
+    console.error("jsPDF not loaded!");
+  }
+</script>
 
         <?php
             if(isset($_POST['submit'])){
@@ -205,11 +215,4 @@
         document.getElementById("paymentModal").style.display = "none"; // Hide the modal
     }
 
-</script>
-<script>
-  if (window.jspdf) {
-    console.log("jsPDF loaded successfully!");
-  } else {
-    console.error("jsPDF failed to load.");
-  }
 </script>
