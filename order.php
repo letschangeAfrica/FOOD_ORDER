@@ -154,7 +154,7 @@
                             pdf.text('Thank you for your order!', 10, 140);
 
                             // Save the PDF
-                            const fileName = `Order_Receipt_${Date.now()}.pdf`;
+                            const fileName = 'Order_Receipt_' + Date.now() + '.pdf';
                             pdf.save(fileName);
 
                             // Redirect to success page after PDF is generated
