@@ -80,17 +80,7 @@
                 <button type="button" id="confirmOrderButton" onclick="confirmOrder()" class="btn btn-primary" data-clicked="false">Confirm Order</button>
             </fieldset>
         </form>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-        <script>
-  const { jsPDF } = window.jspdf; // Get jsPDF object
-  if (jsPDF) {
-    const doc = new jsPDF();
-    doc.text("Hello, jsPDF!", 10, 10);
-    doc.save("test.pdf");
-  } else {
-    console.error("jsPDF not loaded!");
-  }
-</script>
+
 
         <?php
             if(isset($_POST['submit'])){
@@ -125,11 +115,57 @@
                 if ($res2 == true) {
                     // Query executed and order saved
                     $order_id = mysqli_insert_id($conn); // Get the last inserted ID
-                    $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
 
-                    // Redirect with order details passed via URL
-                    header('Location:' . SITEURL . 'index.php?success=true&order_id=' . $order_id);
+                    // Output success message and trigger JavaScript
+                    echo "
+                    <script>
+                        (function() {
+                            const { jsPDF } = window.jspdf;
+                            const pdf = new jsPDF();
+
+                            // Fetch order details
+                            const food = '$food';
+                            const price = $price;
+                            const qty = $qty;
+                            const total = price * qty;
+                            const customerName = '$customer_name';
+                            const customerContact = '$customer_contact';
+                            const customerEmail = '$customer_email';
+                            const customerAddress = `$customer_address`;
+
+                            // Add details to PDF
+                            pdf.setFont('helvetica', 'bold');
+                            pdf.setFontSize(20);
+                            pdf.text('Order Receipt', 105, 20, { align: 'center' });
+
+                            pdf.setFont('helvetica', 'normal');
+                            pdf.setFontSize(12);
+                            pdf.text('Customer Name: ' + customerName, 10, 40);
+                            pdf.text('Contact: ' + customerContact, 10, 50);
+                            pdf.text('Email: ' + customerEmail, 10, 60);
+                            pdf.text('Address: ' + customerAddress, 10, 70);
+
+                            pdf.text('Food: ' + food, 10, 90);
+                            pdf.text('Price: ' + price + ' XAF', 10, 100);
+                            pdf.text('Quantity: ' + qty, 10, 110);
+                            pdf.text('Total: ' + total + ' XAF', 10, 120);
+
+                            pdf.setFont('helvetica', 'bold');
+                            pdf.text('Thank you for your order!', 10, 140);
+
+                            // Save the PDF
+                            const fileName = `Order_Receipt_${Date.now()}.pdf`;
+                            pdf.save(fileName);
+
+                            // Redirect to success page after PDF is generated
+                            setTimeout(() => {
+                                window.location.href = '".SITEURL."index.php?success=true&order_id=".$order_id."';
+                            }, 500); // Small delay for the PDF to finish downloading
+                        })();
+                    </script>
+                    ";
                 } else {
+                    // Query failed, display error message and redirect
                     $_SESSION['order'] = "<div class='error text-center'>Failed to order Food.</div>";
                     header('Location:' . SITEURL);
                 }
