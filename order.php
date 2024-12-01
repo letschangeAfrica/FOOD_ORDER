@@ -222,33 +222,33 @@
 
 <script>
     function confirmOrder() {
-        const confirmButton = document.getElementById("confirmOrderButton");
-        const form = document.getElementById("orderForm");
-        const isClicked = confirmButton.getAttribute("data-clicked") === "true";
+    const confirmButton = document.getElementById("confirmOrderButton");
+    const form = document.getElementById("orderForm");
+    const isClicked = confirmButton.getAttribute("data-clicked") === "true";
 
-        if (!isClicked) {
-            // First click: Display the payment information modal if the form is valid
-            if (form.checkValidity()) {
-                openPaymentModal();
-                confirmButton.setAttribute("data-clicked", "true"); // Mark as clicked
-            } else {
-                // Show validation messages if fields are missing
-                form.reportValidity();
-            }
+    if (!isClicked) {
+        // First click: Display the payment information modal if the form is valid
+        if (form.checkValidity()) {
+            openPaymentModal();
+            confirmButton.setAttribute("data-clicked", "true"); // Mark as clicked
         } else {
-            // Second click: Submit the form
-            confirmButton.setAttribute("type", "submit");
-            confirmButton.name = "submit"; // Set name to submit for PHP handling
-            form.submit(); // Submit the form
+            // Show validation messages if fields are missing
+            form.reportValidity();
         }
+    } else {
+        // Second click: Submit the form
+        confirmButton.setAttribute("type", "submit");
+        confirmButton.name = "submit"; // Set name to submit for PHP handling
+        form.submit(); // Submit the form
     }
+}
 
-    function openPaymentModal() {
-        document.getElementById("paymentModal").style.display = "block";
-    }
+function openPaymentModal() {
+    document.getElementById("paymentModal").style.display = "block";
+}
 
-    function closePaymentModal() {
-        document.getElementById("paymentModal").style.display = "none"; // Hide the modal
-    }
+function closePaymentModal() {
+    document.getElementById("paymentModal").style.display = "none"; // Hide the modal
+}
 
 </script>
