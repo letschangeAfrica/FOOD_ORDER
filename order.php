@@ -116,24 +116,24 @@
                     // Query executed and order saved
                     $order_id = mysqli_insert_id($conn); // Get the last inserted ID
 
-                    // Output success message and trigger JavaScript
+                    // Output success message and trigger JavaScript for PDF
                     echo "
                     <script>
-                        (function() {
+                        document.addEventListener('DOMContentLoaded', function() {
                             const { jsPDF } = window.jspdf;
                             const pdf = new jsPDF();
 
-                            // Fetch order details
+                            // Order details
                             const food = '$food';
                             const price = $price;
                             const qty = $qty;
-                            const total = price * qty;
+                            const total = $total;
                             const customerName = '$customer_name';
                             const customerContact = '$customer_contact';
                             const customerEmail = '$customer_email';
-                            const customerAddress = `$customer_address`;
+                            const customerAddress = '$customer_address';
 
-                            // Add details to PDF
+                            // Generate PDF
                             pdf.setFont('helvetica', 'bold');
                             pdf.setFontSize(20);
                             pdf.text('Order Receipt', 105, 20, { align: 'center' });
@@ -157,11 +157,11 @@
                             const fileName = 'Order_Receipt_' + Date.now() + '.pdf';
                             pdf.save(fileName);
 
-                            // Redirect to success page after PDF is generated
+                            // Redirect to success page
                             setTimeout(() => {
                                 window.location.href = '".SITEURL."index.php?success=true&order_id=".$order_id."';
-                            }, 500); // Small delay for the PDF to finish downloading
-                        })();
+                            }, 1000); // Allow time for the PDF to download
+                        });
                     </script>
                     ";
                 } else {
