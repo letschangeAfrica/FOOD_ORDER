@@ -82,6 +82,7 @@
         </form>
 
         <?php
+        ob_start();
         // Include FPDF library
             require('fpdf.php');  // Adjust the path to where your fpdf.php file is located
 
@@ -159,6 +160,7 @@
         // Output the PDF to browser
         $pdf->Output('order_confirmation.pdf', 'I'); // 'I' for inline (will display in browser)
     }
+    ob_end_flush();
         ?>
     </div>
 </section>
