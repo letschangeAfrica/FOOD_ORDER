@@ -54,3 +54,22 @@ Key tables:
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/food-order-system.git
+
+Import database schema (database/food_order_db.sql)
+
+Configure database connection in config/constants.php
+define('SITEURL', 'http://your-localhost-path/');
+define('DB_HOST', 'localhost');
+define('DB_USERNAME', 'your_db_username');
+define('DB_PASSWORD', 'your_db_password');
+define('DB_NAME', 'food_order_db');
+
+Set proper permissions for uploads:
+
+chmod -R 755 images/
+
+🔒 Default Admin Login
+Username: admin
+
+Password: password
+(Change immediately after first login!)
