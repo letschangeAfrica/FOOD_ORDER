@@ -56,3 +56,7 @@ Key tables:
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/food-order-system.git
+
+![Explore Food](images/pic3.PNG)
+![Explore Food](images/pic9.PNG)
+![Explore Food](images/pic16.PNG)
