@@ -4,6 +4,8 @@
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.2-7952B3?logo=bootstrap)
 
+![Explore Food](imagess/pic2.png)
+
 A complete restaurant management system with admin panel for food ordering, inventory management, and order processing.
 
 ## ✨ Key Features
